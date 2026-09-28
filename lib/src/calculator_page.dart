@@ -1,16 +1,19 @@
+import 'package:first_flutter1/controller/calculator_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:first_flutter1/components/custom_button.dart';
+import 'package:first_flutter1/components/custom_textfield.dart';
+import 'package:get/get.dart';
 
-class CalculatorPage extends StatefulWidget {
-  const CalculatorPage({super.key});
+class CalculatorPage extends StatelessWidget {
+  CalculatorPage({super.key});
 
-  @override
-  State<CalculatorPage> createState() => _CalculatorPageState();
-}
+  final controller = Get.put(CalculatorController());
 
-class _CalculatorPageState extends State<CalculatorPage> {
   @override
   Widget build(BuildContext context) {
+    final TextEditingController angka1 = TextEditingController();
+    final TextEditingController angka2 = TextEditingController();
+
     return Scaffold(
       backgroundColor: const Color(0xFFFAFAFA),
       appBar: AppBar(
@@ -22,86 +25,94 @@ class _CalculatorPageState extends State<CalculatorPage> {
         children: [
           Container(
             margin: const EdgeInsets.all(15),
-            child: TextField(
-              keyboardType: TextInputType.number,
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              decoration: InputDecoration(
-                hintText: "Angka1",
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: const BorderSide(color: Color(0xFFE0E0E0)),
-                ),
+            child: Obx(
+              () => CustomTextfield(
+                myHint: "Angka1",
+                txtController: angka1,
+                numericOnly: true,
+                errorText: controller.errorAngka1.value,
               ),
             ),
           ),
           Container(
             margin: const EdgeInsets.all(15),
-            child: TextField(
-              keyboardType: TextInputType.number,
-              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              decoration: InputDecoration(
-                hintText: "Angka2",
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: const BorderSide(color: Color(0xFFE0E0E0)),
-                ),
+            child: Obx(
+              () => CustomTextfield(
+                myHint: "Angka2",
+                txtController: angka2,
+                numericOnly: true,
+                errorText: controller.errorAngka2.value,
               ),
             ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.black87,
-                  side: const BorderSide(color: Color(0xFFE0E0E0)),
-                ),
-                child: const Text("+"),
+              CustomButton(
+                label: "+",
+                onPressed: () {
+                  if (!controller.isInputValid(angka1.text, angka2.text))
+                    return;
+                  controller.tambah(
+                    double.parse(angka1.text),
+                    double.parse(angka2.text),
+                  );
+                },
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black87,
               ),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.black87,
-                  side: const BorderSide(color: Color(0xFFE0E0E0)),
-                ),
-                child: const Text("-"),
+              CustomButton(
+                label: "-",
+                onPressed: () {
+                  if (!controller.isInputValid(angka1.text, angka2.text))
+                    return;
+                  controller.kurang(
+                    double.parse(angka1.text),
+                    double.parse(angka2.text),
+                  );
+                },
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black87,
               ),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.black87,
-                  side: const BorderSide(color: Color(0xFFE0E0E0)),
-                ),
-                child: const Text("x"),
+              CustomButton(
+                label: "x",
+                onPressed: () {
+                  if (!controller.isInputValid(angka1.text, angka2.text))
+                    return;
+                  controller.kali(
+                    double.parse(angka1.text),
+                    double.parse(angka2.text),
+                  );
+                },
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black87,
               ),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.black87,
-                  side: const BorderSide(color: Color(0xFFE0E0E0)),
-                ),
-                child: const Text("/"),
-              )
+              CustomButton(
+                label: "/",
+                onPressed: () {
+                  if (!controller.isInputValid(angka1.text, angka2.text))
+                    return;
+                  controller.bagi(
+                    double.parse(angka1.text),
+                    double.parse(angka2.text),
+                  );
+                },
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black87,
+              ),
             ],
           ),
           const SizedBox(height: 20),
-          const Text(
-            "Hasil",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-              color: Colors.black87,
+          Obx(
+            () => Text(
+              "Hasil ${controller.hasilHitung.value}",
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: Colors.black87,
+              ),
             ),
-          )
+          ),
         ],
       ),
     );
