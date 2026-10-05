@@ -4,15 +4,15 @@ class CustomText extends StatelessWidget {
   final String text;
   final double fontSize;
   final FontWeight fontWeight;
-  final Color color;
+  final Color? color;
 
   const CustomText(
-      this.text, {
-        super.key,
-        this.fontSize = 30,
-        this.fontWeight = FontWeight.bold,
-        this.color = Colors.black87,
-      });
+    this.text, {
+    super.key,
+    this.fontSize = 16,
+    this.fontWeight = FontWeight.normal,
+    this.color,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class CustomText extends StatelessWidget {
       style: TextStyle(
         fontSize: fontSize,
         fontWeight: fontWeight,
-        color: color,
+        color: color ?? Theme.of(context).colorScheme.onSurface,
       ),
     );
   }

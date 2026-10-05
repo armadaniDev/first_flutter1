@@ -18,8 +18,6 @@ class CalculatorPage extends StatelessWidget {
       backgroundColor: const Color(0xFFFAFAFA),
       appBar: AppBar(
         title: const Text("My Calculator"),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black87,
       ),
       body: Column(
         children: [
@@ -58,8 +56,6 @@ class CalculatorPage extends StatelessWidget {
                     double.parse(angka2.text),
                   );
                 },
-                backgroundColor: Colors.white,
-                foregroundColor: Colors.black87,
               ),
               CustomButton(
                 label: "-",
@@ -71,8 +67,6 @@ class CalculatorPage extends StatelessWidget {
                     double.parse(angka2.text),
                   );
                 },
-                backgroundColor: Colors.white,
-                foregroundColor: Colors.black87,
               ),
               CustomButton(
                 label: "x",
@@ -84,8 +78,6 @@ class CalculatorPage extends StatelessWidget {
                     double.parse(angka2.text),
                   );
                 },
-                backgroundColor: Colors.white,
-                foregroundColor: Colors.black87,
               ),
               CustomButton(
                 label: "/",
@@ -97,8 +89,6 @@ class CalculatorPage extends StatelessWidget {
                     double.parse(angka2.text),
                   );
                 },
-                backgroundColor: Colors.white,
-                foregroundColor: Colors.black87,
               ),
             ],
           ),

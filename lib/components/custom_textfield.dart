@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 class CustomTextfield extends StatelessWidget {
   final String myHint;
   final TextEditingController txtController;
+  final IconData? icon;
   final bool numericOnly;
   final String? errorText;
 
@@ -11,23 +12,44 @@ class CustomTextfield extends StatelessWidget {
     super.key,
     required this.myHint,
     required this.txtController,
+    this.icon,
     this.numericOnly = false,
     this.errorText,
   });
 
+  OutlineInputBorder _border(Color color, [double width = 1]) {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12),
+      borderSide: BorderSide(color: color, width: width),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: txtController,
-      keyboardType: numericOnly ? TextInputType.number : TextInputType.text,
-      inputFormatters: numericOnly
-          ? [FilteringTextInputFormatter.digitsOnly]
-          : null,
-      decoration: InputDecoration(
-        hintText: myHint,
-        errorText: errorText,
-        border: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+    final primary = Theme.of(context).colorScheme.primary;
+    final error = Theme.of(context).colorScheme.error;
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: TextField(
+        controller: txtController,
+        keyboardType: numericOnly ? TextInputType.number : TextInputType.text,
+        inputFormatters: numericOnly
+            ? [FilteringTextInputFormatter.digitsOnly]
+            : null,
+        decoration: InputDecoration(
+          hintText: myHint,
+          errorText: errorText,
+          prefixIcon: icon != null ? Icon(icon) : null,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 14,
+            vertical: 14,
+          ),
+          border: _border(Colors.grey.shade400),
+          enabledBorder: _border(Colors.grey.shade400),
+          focusedBorder: _border(primary, 1.5),
+          errorBorder: _border(error),
+          focusedErrorBorder: _border(error, 1.5),
         ),
       ),
     );
