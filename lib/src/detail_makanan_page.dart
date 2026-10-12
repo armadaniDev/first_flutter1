@@ -17,96 +17,42 @@ class DetailMakananPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          // Gambar + nama + harga + rating
-          Card(
-            elevation: 3,
-            clipBehavior: Clip.antiAlias,
-            margin: const EdgeInsets.only(bottom: 12),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
+          CustomSectionCard(
+            title: makanan.namaMakanan,
+            icon: Icons.restaurant,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 8,
               children: [
-                AspectRatio(
-                  aspectRatio: 4 / 3,
-                  child: Image.network(
-                    makanan.gambar,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                    loadingBuilder: (context, child, progress) {
-                      if (progress == null) return child;
-                      return const Center(child: CircularProgressIndicator());
-                    },
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        color: Colors.grey.shade200,
-                        child: const Center(
-                          child: Icon(Icons.broken_image, size: 48),
-                        ),
-                      );
-                    },
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: AspectRatio(
+                    aspectRatio: 4 / 3,
+                    child: Image.network(makanan.gambar, fit: BoxFit.cover),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              makanan.namaMakanan,
-                              style: const TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              "Rp ${makanan.harga}",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Icon(
-                        Icons.star_rounded,
-                        color: Colors.amber,
-                        size: 22,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        makanan.rating,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+                Text(
+                  "Rp ${makanan.harga}",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
+                Text("Rating: ${makanan.rating}"),
               ],
             ),
           ),
-
           CustomSectionCard(
             title: "Rasa",
             icon: Icons.restaurant_menu,
             child: Text(makanan.rasa),
           ),
-
           CustomSectionCard(
             title: "Deskripsi",
             icon: Icons.description_outlined,
             child: Text(makanan.deskripsi, style: const TextStyle(height: 1.5)),
           ),
-
           CustomSectionCard(
             title: "Review",
             icon: Icons.rate_review_outlined,

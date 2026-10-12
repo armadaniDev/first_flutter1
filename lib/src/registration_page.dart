@@ -3,11 +3,10 @@ import 'package:first_flutter1/components/custom_textfield.dart';
 import 'package:first_flutter1/components/custom_dropdown.dart';
 import 'package:first_flutter1/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 
 class RegistrationPage extends StatelessWidget {
-  const new({super.key});
+  const RegistrationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +19,23 @@ class RegistrationPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text("Register Page")),
-      body: SingleChildScrollView(
+      body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             CustomTextfield(myHint: "Username", txtController: txtUsername),
-            CustomTextfield(myHint: "Nama Lengkap", txtController: txtNamaLengkap),
+            CustomTextfield(myHint: "Nama Lengkap", txtController: txtNamaLengkap,),
             CustomTextfield(myHint: "Email", txtController: txtEmail),
             CustomDropdown(
               myHint: "Agama",
-              items: const ["Islam", "Kristen", "Katolik", "Hindu", "Budha", "Konghucu"],
+              items: const [
+                "Islam",
+                "Kristen",
+                "Katolik",
+                "Hindu",
+                "Budha",
+                "Konghucu",
+              ],
               onChanged: (value) => agama.text = value ?? '',
             ),
             CustomDropdown(

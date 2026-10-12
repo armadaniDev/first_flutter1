@@ -8,13 +8,13 @@ import 'package:get/get.dart';
 class ConfirmRegistrationPage extends StatelessWidget {
   ConfirmRegistrationPage({super.key});
 
-  final conteoller = Get.put(ConfirmRegistrationController());
+  final controller = Get.put(ConfirmRegistrationController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Confirm Registration")),
-      body: SingleChildScrollView(
+      body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
@@ -36,32 +36,32 @@ class ConfirmRegistrationPage extends StatelessWidget {
                   CustomInfoRow(
                     icon: Icons.person_outline,
                     label: "Username",
-                    value: conteoller.username.toString(),
+                    value: controller.username.toString(),
                   ),
                   CustomInfoRow(
                     icon: Icons.badge_outlined,
                     label: "Nama Lengkap",
-                    value: conteoller.namalengkap.toString(),
+                    value: controller.namalengkap.toString(),
                   ),
                   CustomInfoRow(
                     icon: Icons.email_outlined,
                     label: "Email",
-                    value: conteoller.email.toString(),
+                    value: controller.email.toString(),
                   ),
                   CustomInfoRow(
                     icon: Icons.favorite_border,
                     label: "Agama",
-                    value: conteoller.agama.toString(),
+                    value: controller.agama.toString(),
                   ),
                   CustomInfoRow(
                     icon: Icons.wc_outlined,
                     label: "Jenis Kelamin",
-                    value: conteoller.jenis_kelamin.toString(),
+                    value: controller.jenis_kelamin.toString(),
                   ),
                   CustomInfoRow(
                     icon: Icons.phone_outlined,
                     label: "Nomor",
-                    value: conteoller.nomor.toString(),
+                    value: controller.nomor.toString(),
                     isLast: true,
                   ),
                 ],
@@ -70,10 +70,7 @@ class ConfirmRegistrationPage extends StatelessWidget {
             const SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
-              child: CustomButton(
-                label: "Oke",
-                onPressed: () => Get.back(),
-              ),
+              child: CustomButton(label: "Oke", onPressed: () => Get.back()),
             ),
           ],
         ),

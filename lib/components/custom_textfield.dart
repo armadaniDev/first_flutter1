@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 class CustomTextfield extends StatelessWidget {
   final String myHint;
   final TextEditingController txtController;
-  final IconData? icon;
   final bool numericOnly;
   final String? errorText;
 
@@ -12,7 +11,6 @@ class CustomTextfield extends StatelessWidget {
     super.key,
     required this.myHint,
     required this.txtController,
-    this.icon,
     this.numericOnly = false,
     this.errorText,
   });
@@ -40,7 +38,6 @@ class CustomTextfield extends StatelessWidget {
         decoration: InputDecoration(
           hintText: myHint,
           errorText: errorText,
-          prefixIcon: icon != null ? Icon(icon) : null,
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 14,
             vertical: 14,
