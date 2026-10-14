@@ -23,17 +23,15 @@ class CustomInfoRow extends StatelessWidget {
         children: [
           Icon(icon, color: Colors.grey.shade600),
           const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomText(label, fontSize: 12, color: Colors.grey.shade600),
-                CustomText(
-                  (value == null || value!.isEmpty) ? "-" : value!,
-                  fontWeight: FontWeight.w600,
-                ),
-              ],
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomText(label, fontSize: 12, color: Colors.grey.shade600),
+              CustomText(
+                (value == null || value!.isEmpty) ? "-" : value!,
+                fontWeight: FontWeight.w600,
+              ),
+            ],
           ),
         ],
       ),

@@ -39,8 +39,6 @@ class ListMakananPage extends StatelessWidget {
                       width: 80,
                       height: 80,
                       fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) =>
-                          const Icon(Icons.broken_image, size: 80),
                     ),
                   ),
                   Text(
