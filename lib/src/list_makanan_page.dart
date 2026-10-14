@@ -1,6 +1,6 @@
 import 'package:first_flutter1/components/custom_section_card.dart';
 import 'package:first_flutter1/controller/list_makanan_controller.dart';
-import 'package:first_flutter1/src/detail_makanan_page.dart';
+import 'package:first_flutter1/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,9 +22,9 @@ class ListMakananPage extends StatelessWidget {
           return InkWell(
             borderRadius: BorderRadius.circular(12),
             onTap: () {
-              // klik pindah ke detail list page
-              // mengirim data menggunakan arguments get.to
-              Get.to(() => DetailMakananPage(), arguments: makanan);
+              // klik pindah ke halaman detail
+              // mengirim data menggunakan arguments
+              Get.toNamed(Routes.detail_makanan, arguments: makanan);
             },
             child: CustomSectionCard(
               title: makanan.namaMakanan,
@@ -32,13 +32,17 @@ class ListMakananPage extends StatelessWidget {
               child: Row(
                 spacing: 12,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.network(
-                      makanan.gambar,
-                      width: 80,
-                      height: 80,
-                      fit: BoxFit.cover,
+                  Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(8),
+                      image: DecorationImage(
+                        image: NetworkImage(makanan.gambar),
+                        fit: BoxFit.cover,
+                        onError: (exception, stackTrace) {},
+                      ),
                     ),
                   ),
                   Text(

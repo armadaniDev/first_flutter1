@@ -19,7 +19,8 @@ class ListMakananController extends GetxController {
       rasa: "Gurih, Manis, Pedas",
       deskripsi: "Soto khas dengan daging kerbau empuk dan kuah kaldu pekat yang kaya rempah.",
       rating: "4.5",
-      review:"Dagingnya empuk dan bumbunya meresap, cocok untuk pecinta pedas.",
+      review:
+          "Dagingnya empuk dan bumbunya meresap, cocok untuk pecinta pedas.",
       gambar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLhn8dHEop3YalC6s1vTKpj3gL-s8mYhlHAHVhu6Mrkw&s=10",
     ),
     MakananModel(
@@ -28,7 +29,8 @@ class ListMakananController extends GetxController {
       rasa: "Pedas, Gurih",
       deskripsi: "Ayam goreng tepung krispi yang digeprek bersama sambal bawang pedas, disajikan dengan nasi hangat.",
       rating: "4.4",
-      review:"Krispi di luar, sambalnya mantap dan level pedasnya bisa diatur.",
+      review:
+          "Krispi di luar, sambalnya mantap dan level pedasnya bisa diatur.",
       gambar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG2dgQQl_mZ0rwteaVKChb8dHUdtbZjnDhS5QW1MwQJQ&s=10",
     ),
     MakananModel(

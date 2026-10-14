@@ -13,51 +13,58 @@ class DetailMakananPage extends StatelessWidget {
     final makanan = controller.makanan;
 
     return Scaffold(
-      appBar: AppBar(title: Text(makanan.namaMakanan)),
+      appBar: AppBar(title: Text(controller.makanan.namaMakanan)),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           CustomSectionCard(
-            title: makanan.namaMakanan,
+            title: controller.makanan.namaMakanan,
             icon: Icons.restaurant,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: 8,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: AspectRatio(
-                    aspectRatio: 4 / 3,
-                    child: Image.network(makanan.gambar, fit: BoxFit.cover),
+                AspectRatio(
+                  aspectRatio: 4 / 3,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(8),
+                      image: DecorationImage(
+                        image: NetworkImage(controller.makanan.gambar),
+                        fit: BoxFit.cover,
+                        onError: (exception, stackTrace) {},
+                      ),
+                    ),
                   ),
                 ),
                 Text(
-                  "Rp ${makanan.harga}",
+                  "Rp ${controller.makanan.harga}",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
-                Text("Rating: ${makanan.rating}"),
+                Text("Rating: ${controller.makanan.rating}"),
               ],
             ),
           ),
           CustomSectionCard(
             title: "Rasa",
             icon: Icons.restaurant_menu,
-            child: Text(makanan.rasa),
+            child: Text(controller.makanan.rasa),
           ),
           CustomSectionCard(
             title: "Deskripsi",
             icon: Icons.description_outlined,
-            child: Text(makanan.deskripsi, style: const TextStyle(height: 1.5)),
+            child: Text(controller.makanan.deskripsi, style: const TextStyle(height: 1.5)),
           ),
           CustomSectionCard(
             title: "Review",
             icon: Icons.rate_review_outlined,
             child: Text(
-              makanan.review,
+              controller.makanan.review,
               style: const TextStyle(fontStyle: FontStyle.italic, height: 1.5),
             ),
           ),
