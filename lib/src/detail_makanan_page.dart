@@ -10,7 +10,6 @@ class DetailMakananPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final makanan = controller.makanan;
 
     return Scaffold(
       appBar: AppBar(title: Text(controller.makanan.namaMakanan)),
@@ -58,7 +57,10 @@ class DetailMakananPage extends StatelessWidget {
           CustomSectionCard(
             title: "Deskripsi",
             icon: Icons.description_outlined,
-            child: Text(controller.makanan.deskripsi, style: const TextStyle(height: 1.5)),
+            child: Text(
+              controller.makanan.deskripsi,
+              style: const TextStyle(height: 1.5),
+            ),
           ),
           CustomSectionCard(
             title: "Review",
