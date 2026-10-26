@@ -1,9 +1,9 @@
 import 'package:first_flutter1/routes.dart';
-import 'package:first_flutter1/src/login_page1.dart';
+import 'package:first_flutter1/pages/login_page1.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'src/login_page.dart';
-import 'src/calculator_page.dart';
+import 'pages/login_page.dart';
+import 'pages/calculator_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: "Belajar Flutter GetX",
-      initialRoute: Routes.list_makanan,
+      initialRoute: Routes.main_menu,
       getPages: Routes.myPages,
     );
   }
