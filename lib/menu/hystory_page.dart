@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HystoryPage extends StatelessWidget {
-  const new({super.key});
+  HystoryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
