@@ -1,77 +1,45 @@
 import 'package:first_flutter1/components/custom_textfield.dart';
 import 'package:first_flutter1/components/custom_button.dart';
 import 'package:first_flutter1/components/custom_text.dart';
+import 'package:first_flutter1/controller/login_page_controller.dart'; // sesuaikan path
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatelessWidget {
+  LoginPage({super.key});
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  final TextEditingController txtUsername = TextEditingController();
-  final TextEditingController txtPassword = TextEditingController();
-  String statusLogin = "";
-
-  @override
-  void dispose() {
-    txtUsername.dispose();
-    txtPassword.dispose();
-    super.dispose();
-  }
-
-  void _login() {
-    setState(() {
-      // fungsinya untuk reload / refresh satu page full
-      final username = txtUsername.text.trim();
-      final password = txtPassword.text.trim();
-
-      if (username == "admin" && password == "admin") {
-        statusLogin = "admin";
-        print("sukses login");
-      } else {
-        statusLogin = "failed";
-        print("gagal login");
-      }
-    });
-  }
+  final LoginPageController controller = Get.put(LoginPageController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("login page")),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: CustomText(
-              "Welcome to application $statusLogin",
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.all(10),
-            child: CustomTextfield(
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            const CustomText("Welcome to application"),
+            const SizedBox(height: 16),
+            CustomTextfield(
               myHint: "input username",
-              txtController: txtUsername,
+              txtController: controller.txtUsername,
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.all(10),
-            child: CustomTextfield(
+            CustomTextfield(
               myHint: "input password",
-              txtController: txtPassword,
+              txtController: controller.txtPassword,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: CustomButton(
-              label: "Login",
-              onPressed: _login,
+            Obx(
+              () => controller.isLoading.value
+                  ? Center(child: CircularProgressIndicator())
+                  : OutlinedButton(
+                      onPressed: () {
+                        controller.Login();
+                      },
+                      child: Text("login"),
+                    ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

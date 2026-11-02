@@ -1,6 +1,7 @@
 import 'package:first_flutter1/pages/confirm_registration_page.dart';
 import 'package:first_flutter1/pages/detail_makanan_page.dart';
 import 'package:first_flutter1/pages/list_makanan_page.dart';
+import 'package:first_flutter1/pages/login_page.dart';
 import 'package:first_flutter1/pages/main_menu.dart';
 import 'package:first_flutter1/pages/registration_page.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -12,6 +13,7 @@ class Routes {
   static const String list_makanan = "/list_makanan";
   static const String detail_makanan = "/detail_makanan";
   static const String main_menu = "/main_menu";
+  static const String login_page = "/login_page";
   //dll
 
   //kita masukka ke myPages array
@@ -20,6 +22,7 @@ class Routes {
     GetPage(name: confirm_registration, page: () => ConfirmRegistrationPage()),
     GetPage(name: list_makanan, page: () => ListMakananPage()),
     GetPage(name: detail_makanan, page: () => DetailMakananPage()),
-    GetPage(name: main_menu, page:()=> MainMenu())
+    GetPage(name: main_menu, page:()=> MainMenu()),
+    GetPage(name: login_page, page:()=> LoginPage())
   ];
 }
