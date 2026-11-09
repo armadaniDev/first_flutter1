@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:first_flutter1/models/loginModel.dart';
 import 'package:first_flutter1/pages/main_menu.dart';
+import 'package:first_flutter1/routes.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +12,7 @@ class LoginPageController extends GetxController {
   TextEditingController txtPassword = TextEditingController();
 
   var isLoading = false.obs;
+  var loginModel = Rxn<LoginModel>();
 
   void Login() async {
     if (txtUsername.text.toString().isEmpty ||
@@ -31,15 +34,15 @@ class LoginPageController extends GetxController {
 
         isLoading.value = false;
         if (response.statusCode == 200) {
-          final data = jsonDecode(response.body);
-          if (data['status'] == true) {
-            Get.snackbar("Berhasil", data['message']);
+          loginModel.value = loginModelFromJson(response.body);
+          if (loginModel.value?.status == true) {
+            Get.snackbar("Berhasil", loginModel.value!.message);
             //pindah ke main menu
             //get.off karena login nya di close
             //carilah satu free api (sport db) yang return nya json array
-            Get.off(() => MainMenu());
+            Get.offNamed(Routes.main_menu);
           } else {
-            Get.snackbar("gagal", data['message']);
+            Get.snackbar("gagal", loginModel.value!.message);
           }
         } else {
           Get.snackbar("gagal", "cek internet connection");
