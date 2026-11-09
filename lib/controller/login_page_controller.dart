@@ -36,7 +36,7 @@ class LoginPageController extends GetxController {
             Get.snackbar("Berhasil", data['message']);
             //pindah ke main menu
             //get.off karena login nya di close
-            //carilah sati free api (sport db) yang return nya json array
+            //carilah satu free api (sport db) yang return nya json array
             Get.off(() => MainMenu());
           } else {
             Get.snackbar("gagal", data['message']);
